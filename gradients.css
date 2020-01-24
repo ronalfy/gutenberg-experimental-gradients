@@ -2,6 +2,9 @@ button.geg-gradient {
 	position: relative;
 	cursor: pointer; 
 }
+button.geg-gradient.unchecked:hover {
+	background: #CCC;
+}
 button.geg-gradient span {
 	display: inline-block;
 	border-radius: 50%;
