@@ -4,7 +4,7 @@ Plugin Name: Gutenberg Experimental Gradients
 Plugin URI: https://github.com/ronalfy/gutenberg-experimental-gradients
 Description: Enable a variety of gradients for Gutenberg.
 Author: Ronald Huereca
-Version: 0.0.1
+Version: 0.0.2
 Requires at least: 5.3
 Author URI: https://mediaron.com
 Contributors: ronalfy
@@ -14,7 +14,7 @@ Domain Path: /languages
 Credit: https://webgradients.com/ for the gradients.
 */
 
-define( 'GUTENBERG_EXPERIMENTAL_GRADIENTS_VERSION', '0.0.1' );
+define( 'GUTENBERG_EXPERIMENTAL_GRADIENTS_VERSION', '0.0.2' );
 /**
  * Main class where all the stuff happens.
  */
@@ -106,6 +106,22 @@ class Gutenberg_Experimental_Gradients {
 		// Set gradients. Maybe.
 		$gradient_options = get_option( 'geg_gradients', array() );
 		if ( is_array( $gradient_options ) && ! empty( $gradient_options ) ) {
+			/**
+			 * Add your own Gradients.
+			 *
+			 * Add your own Gradients.
+			 *
+			 * @since 0.0.2
+			 *
+			 * @param array $gradient_options {
+			 *     Array of gradients.
+			 *
+			 *     @type string Gradient in RGB format.
+			 *     @type string Gradient name.
+			 *     @type string Gradient slug.
+			 * }
+			 */
+			$gradient_options = apply_filters( 'geg_theme_gradients', $gradient_options );
 			add_theme_support(
 				'__experimental-editor-gradient-presets',
 				array_values( $gradient_options )
@@ -309,6 +325,23 @@ class Gutenberg_Experimental_Gradients {
 				'linear-gradient(-225deg, rgb(35,21,87) 0%, rgb(68,16,122) 29%, rgb(255,19,97) 67%, rgb(255,248,0) 100%)' => 'Fabled Sunset',
 				'linear-gradient(-225deg, rgb(61,78,129) 0%, rgb(87,83,201) 48%, rgb(110,127,243) 100%)' => 'Perfect Blue',
 			);
+
+			/**
+			 * Add your own Gradients.
+			 *
+			 * Add your own Gradients.
+			 *
+			 * @since 0.0.2
+			 *
+			 * @param array $gradients {
+			 *     Array of gradients.
+			 *
+			 *     @type string Gradient in RGB format.
+			 *     @type string Gradient name (will be used as the gradient slug).
+			 * }
+			 */
+			$gradients = apply_filters( 'geg_admin_gradients', $gradients );
+			asort( $gradients );
 			?>
 			<div id="geg-gradients">
 				<form method="POST" id="geg-gradients-form">
@@ -324,7 +357,7 @@ class Gutenberg_Experimental_Gradients {
 						<?php
 					}
 					?>
-					<div>
+					<div><br />
 					<a href="#" id="geg-gradient-select-all"><?php esc_html_e( 'Select All', 'gutenberg-experimental-gradients' ); ?></a> | <a href="#" id="geg-gradient-deselect-all"><?php esc_html_e( 'Deselect All', 'gutenberg-experimental-gradients' ); ?></a>
 					</div>
 					<?php submit_button( __( 'Save Gradients', 'gutenberg-experimental-gradients' ), 'primary', 'geg-save-gradients' ); ?>
