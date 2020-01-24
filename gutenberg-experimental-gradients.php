@@ -4,7 +4,7 @@ Plugin Name: Gutenberg Experimental Gradients
 Plugin URI: https://github.com/ronalfy/gutenberg-experimental-gradients
 Description: Enable a variety of gradients for Gutenberg.
 Author: Ronald Huereca
-Version: 1.0.0
+Version: 0.0.1
 Requires at least: 5.3
 Author URI: https://mediaron.com
 Contributors: ronalfy
@@ -14,7 +14,7 @@ Domain Path: /languages
 Credit: https://webgradients.com/ for the gradients.
 */
 
-define( 'GUTENBERG_EXPERIMENTAL_GRADIENTS_VERSION', '1.0.0' );
+define( 'GUTENBERG_EXPERIMENTAL_GRADIENTS_VERSION', '0.0.1' );
 /**
  * Main class where all the stuff happens.
  */
